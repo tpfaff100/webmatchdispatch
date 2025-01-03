@@ -1,12 +1,14 @@
 /*
 
+Thomas Pfaff, 1/2024
+
 Usage:
 
 ------------------
 Using OPENSSL, generate unsafe https key so we can run an https server easily:
 openssl genrsa 2048 > server.key
 chmod 400 server.key
-openssl req -new -x509 -nodes -sha256 -days 365 -key server.key -out server.cert
+openssl req -new -x509 -nodes -sha256 -days 365 -key server.key -out server.crt
 -------------------
 go build *.go
 ./dictdispatchs  
@@ -17,7 +19,7 @@ https://localhost:9876/login
 https://localhost:9876
 
 This example shows how to setup function dispatch tables in golang
-Not hard.  I just haven't seen it done anywhere yet.
+Easy peasy.  I just haven't seen it done like this anywhere yet.
 
 */
 
@@ -160,18 +162,11 @@ func main() {
 
                 httpsmux = dispatchDict
 
-//              server.ListenAndServe()
+// HTTP only-             server.ListenAndServe()
+
+		// Start HTTPS server.  You can run both HTTP and HTTPS if you like, on different ports of course.
                  server.ListenAndServeTLS(X509CERT, X509CERTKEY)
         }
-
-/*
-	httpsmux = dispatchDict
-	err := server.ListenAndServe()
-	if err != nil {
-		fmt.Printf("Unable to start HTTP server: %s\n", err)
-		os.Exit(1)
-	}
-*/
 }
 
 type myHandler struct{}
