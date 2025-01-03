@@ -1,6 +1,6 @@
 # webmatchdispatch
 Very simple demonstration of dynamic https string->function dispatch table set up to run methods by way of a Dictionary/Hashtable list
-
+<pre>
 Usage:
 
 ------------------
@@ -23,3 +23,4 @@ Easy peasy.  I just haven't seen it done like this anywhere yet.
 I have used very complex tables for other applications in the past I like how the function names all go at the top of the main() file and are easy to find, rather than digging through the main() procedure, looking for each tag->function match.
 
 Almost forgot- the .conf file determines what PORT is used for the https connection.
+</pre>
